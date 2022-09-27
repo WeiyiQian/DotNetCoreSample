@@ -9,8 +9,8 @@ namespace DotNet_Core_Sample.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private EmployeeRepository _repository = null;
-        public ValuesController(EmployeeRepository employeeRepository)
+        private IEmployeeRepository _repository;
+        public ValuesController(IEmployeeRepository employeeRepository)
         {
             _repository = employeeRepository;
         }
@@ -20,10 +20,10 @@ namespace DotNet_Core_Sample.Controllers
             List<Employee> employees = _repository.GetAll();
             return employees;
         }
-        [HttpGet]
-        public Employee GetById(int Id)
+        [HttpGet("{id}")]
+        public Employee GetById(int id)
         {
-            return _repository.GetById(Id);
+            return _repository.GetById(id);
         }
         [HttpPost]
         public void Post(Employee emp)
