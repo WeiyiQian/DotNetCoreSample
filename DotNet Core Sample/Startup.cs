@@ -28,8 +28,9 @@ namespace DotNet_Core_Sample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IEmployeeRepository, EmployeeRepository>();
-            //services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             //services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            //services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+
             services.AddControllers();
             
             services.AddSwaggerGen(c =>

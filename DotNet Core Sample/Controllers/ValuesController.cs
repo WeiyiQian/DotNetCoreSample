@@ -26,9 +26,12 @@ namespace DotNet_Core_Sample.Controllers
             return _repository.GetById(id);
         }
         [HttpPost]
-        public void Post(Employee emp)
+        public List<Employee> Post(Employee emp)
         {
-            _repository.Post(emp);
+            var repository1 = (IEmployeeRepository)this.HttpContext.RequestServices.GetService(typeof(IEmployeeRepository));
+            var repository2 = (IEmployeeRepository)this.HttpContext.RequestServices.GetService(typeof(IEmployeeRepository));
+            repository1.Post(emp);
+            return repository2.GetAll();
         }
     }
 }
